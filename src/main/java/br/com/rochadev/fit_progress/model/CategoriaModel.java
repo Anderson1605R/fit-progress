@@ -14,9 +14,13 @@ public class CategoriaModel {
     private long id;
     @Column(name = "nome", nullable = false)
     private String nome;
+    @ManyToOne
+    @JoinColumn(name = "usuarios_id")
+    private UsuarioModel usuario;
 
-        @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
-        private List<ExercicioModel> exercicio =new ArrayList<>();
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
+    private List<ExercicioModel> exercicio = new ArrayList<>();
+
     public String getNome() {
         return nome;
     }

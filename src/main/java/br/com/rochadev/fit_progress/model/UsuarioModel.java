@@ -15,8 +15,11 @@ public class UsuarioModel {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
+    @Column(name = "senha", nullable = false)
+    private String senha;
+
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<CategoriaModel> categoria = new ArrayList<>();
@@ -35,6 +38,14 @@ public class UsuarioModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
 
