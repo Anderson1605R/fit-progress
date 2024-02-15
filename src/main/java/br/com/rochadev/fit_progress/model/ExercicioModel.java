@@ -19,6 +19,14 @@ public class ExercicioModel {
     @JoinColumn(name = "categorias_id")
     private CategoriaModel categoria;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }

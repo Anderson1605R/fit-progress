@@ -21,6 +21,30 @@ public class CategoriaModel {
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
     private List<ExercicioModel> exercicio = new ArrayList<>();
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public UsuarioModel getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioModel usuario) {
+        this.usuario = usuario;
+    }
+
+    public List<ExercicioModel> getExercicio() {
+        return exercicio;
+    }
+
+    public void setExercicio(List<ExercicioModel> exercicio) {
+        this.exercicio = exercicio;
+    }
+
     public String getNome() {
         return nome;
     }

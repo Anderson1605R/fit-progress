@@ -22,7 +22,21 @@ public class UsuarioModel {
 
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    private List<CategoriaModel> categoria = new ArrayList<>();
+    private List<CategoriaModel> categorias = new ArrayList<>();
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public List<CategoriaModel> getCategoria() {
+        return categorias;
+    }
+
+
 
     public String getNome() {
         return nome;
@@ -46,6 +60,12 @@ public class UsuarioModel {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+
+    public void adicionarCategoria(CategoriaModel categoria) {
+        categorias.add(categoria);
+        categoria.setUsuario(this);
     }
 
 
