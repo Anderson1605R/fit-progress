@@ -41,9 +41,7 @@ public class CategoriaModel {
         return exercicio;
     }
 
-    public void setExercicio(List<ExercicioModel> exercicio) {
-        this.exercicio = exercicio;
-    }
+
 
     public String getNome() {
         return nome;
@@ -52,4 +50,12 @@ public class CategoriaModel {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public void adicionarExercicio(ExercicioModel exercicios) {
+        exercicio.add(exercicios);
+        exercicios.setCategoria(this);
+
+
+    }
+
 }

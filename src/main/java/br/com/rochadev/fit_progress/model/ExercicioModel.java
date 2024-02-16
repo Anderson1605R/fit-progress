@@ -58,4 +58,6 @@ public class ExercicioModel {
     public void setCategoria(CategoriaModel categoria) {
         this.categoria = categoria;
     }
+
+
 }

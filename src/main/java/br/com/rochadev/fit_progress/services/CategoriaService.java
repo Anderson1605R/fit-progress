@@ -29,5 +29,15 @@ public class CategoriaService {
         usuarioRepo.save(usuarioExistente);
     }
 
+    public CategoriaModel atualizarCategoria(CategoriaModel categoriaAtualizada, long id) {
+        var categoriaExistente = categoriaRepo.findById(id).orElseThrow(() -> new NullPointerException("Categoria não encontrada"));
+        categoriaExistente.setNome(categoriaAtualizada.getNome());
+        categoriaRepo.save(categoriaExistente);
+        return categoriaExistente;
 
+    }
+
+    public void apagarCategoria(long id){
+        categoriaRepo.deleteById(id);
+    }
 }
