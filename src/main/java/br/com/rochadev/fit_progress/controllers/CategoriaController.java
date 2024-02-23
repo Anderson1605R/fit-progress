@@ -30,13 +30,14 @@ public class CategoriaController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PutMapping("/atualizar/{id}")
+    @PutMapping("/editar/{id}")
     public ResponseEntity<CategoriaModel> atualizar(@RequestBody CategoriaModel categoriaAtualizada, @PathVariable("id") long id){
         return ResponseEntity.ok(categoriaService.atualizarCategoria(categoriaAtualizada, id));
     }
 
     @DeleteMapping("/deletar/{id}")
-    public void deletar(@PathVariable("id") long id){
+    public ResponseEntity<Void> deletar(@PathVariable("id") long id){
         categoriaService.apagarCategoria(id);
+        return ResponseEntity.noContent().build();
     }
 }
