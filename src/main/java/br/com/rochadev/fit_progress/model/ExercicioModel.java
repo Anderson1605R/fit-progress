@@ -1,5 +1,6 @@
 package br.com.rochadev.fit_progress.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,7 +15,7 @@ public class ExercicioModel {
     private int numeroSeries;
     @Column(name = "carga", nullable = false)
     private int quantidadeCarga;
-
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "categorias_id")
     private CategoriaModel categoria;

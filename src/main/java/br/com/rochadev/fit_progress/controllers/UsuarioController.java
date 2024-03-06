@@ -23,6 +23,12 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.buscarTodosUsuarios());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<UsuarioModel> usuarioPorID(@PathVariable("id") long id){
+        return ResponseEntity.ok(usuarioService.buscarUsuarioId(id));
+
+    }
+
     @PostMapping("/salvar")
     public ResponseEntity<UsuarioModel> salvarUsuario(@RequestBody UsuarioModel usuario) {
         var usuarioSalvo = usuarioService.salvarUsuario(usuario);

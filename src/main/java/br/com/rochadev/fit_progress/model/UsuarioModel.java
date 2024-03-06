@@ -1,5 +1,8 @@
 package br.com.rochadev.fit_progress.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -17,11 +20,20 @@ public class UsuarioModel {
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;
+
+    public List<CategoriaModel> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<CategoriaModel> categorias) {
+        this.categorias = categorias;
+    }
+
     @Column(name = "senha", nullable = false)
     private String senha;
-
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("usuario")
     private List<CategoriaModel> categorias = new ArrayList<>();
 
     public long getId() {
@@ -31,6 +43,7 @@ public class UsuarioModel {
     public void setId(long id) {
         this.id = id;
     }
+
 
     public List<CategoriaModel> getCategoria() {
         return categorias;
