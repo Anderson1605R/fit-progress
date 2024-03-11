@@ -19,7 +19,14 @@ public class UsuarioModel {
     private String nome;
 
     @Column(name = "email", nullable = false, unique = true)
+
     private String email;
+    @Column(name = "senha", nullable = false)
+    private String senha;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("usuario")
+    private List<CategoriaModel> categorias = new ArrayList<>();
 
     public List<CategoriaModel> getCategorias() {
         return categorias;
@@ -29,12 +36,6 @@ public class UsuarioModel {
         this.categorias = categorias;
     }
 
-    @Column(name = "senha", nullable = false)
-    private String senha;
-    @JsonManagedReference
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("usuario")
-    private List<CategoriaModel> categorias = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -43,12 +44,6 @@ public class UsuarioModel {
     public void setId(long id) {
         this.id = id;
     }
-
-
-    public List<CategoriaModel> getCategoria() {
-        return categorias;
-    }
-
 
 
     public String getNome() {
@@ -80,7 +75,6 @@ public class UsuarioModel {
         categorias.add(categoria);
         categoria.setUsuario(this);
     }
-
 
 
 }
