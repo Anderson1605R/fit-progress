@@ -31,6 +31,7 @@ public class UsuarioController {
 
     @PostMapping("/salvar")
     public ResponseEntity<UsuarioModel> salvarUsuario(@RequestBody UsuarioModel usuario) {
+        usuario.setSenha(usuarioService.passwordEncoder().encode(usuario.getSenha()));
         var usuarioSalvo = usuarioService.salvarUsuario(usuario);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

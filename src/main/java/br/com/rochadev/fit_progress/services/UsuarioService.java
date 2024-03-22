@@ -2,6 +2,8 @@ package br.com.rochadev.fit_progress.services;
 
 import br.com.rochadev.fit_progress.model.UsuarioModel;
 import br.com.rochadev.fit_progress.repositories.UsuarioRepo;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,6 +45,11 @@ public class UsuarioService {
 
     public void apagarUsuario(long id) {
         usuarioRepo.deleteById(id);
+    }
+
+    public PasswordEncoder passwordEncoder(){
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder;
     }
 
 
