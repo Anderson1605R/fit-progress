@@ -3,11 +3,11 @@ package br.com.rochadev.fit_progress.controllers;
 import br.com.rochadev.fit_progress.model.UsuarioModel;
 import br.com.rochadev.fit_progress.services.UsuarioService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -28,6 +28,19 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.buscarUsuarioId(id));
 
     }
+    @GetMapping("/validarSenha")
+    public ResponseEntity<Boolean> validar(@RequestParam String email, @RequestParam String senha){
+        Optional<UsuarioModel> optionalUsuario = usuarioService.buscarUsuarioPorEmail(email);
+
+        if(optionalUsuario.isEmpty()){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
+        }
+        UsuarioModel usuario = optionalUsuario.get();
+        boolean valid = usuarioService.passwordEncoder().matches(senha, usuario.getSenha());
+
+        HttpStatus status = (valid) ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
+        return ResponseEntity.status(status).body(valid);
+    };
 
     @PostMapping("/salvar")
     public ResponseEntity<UsuarioModel> salvarUsuario(@RequestBody UsuarioModel usuario) {

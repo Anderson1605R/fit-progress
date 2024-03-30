@@ -19,7 +19,6 @@ public class UsuarioModel {
     private String nome;
 
     @Column(name = "email", nullable = false, unique = true)
-
     private String email;
     @Column(name = "senha", nullable = false)
     private String senha;

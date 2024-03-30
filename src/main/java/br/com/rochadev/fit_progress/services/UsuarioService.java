@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -23,6 +24,10 @@ public class UsuarioService {
 
     public UsuarioModel buscarUsuarioId(long id) {
         return usuarioRepo.findById(id).orElseThrow(() -> new NoSuchElementException("Usuário não encontrado!"));
+    }
+
+    public Optional<UsuarioModel> buscarUsuarioPorEmail(String email){
+        return usuarioRepo.findByEmail(email);
     }
 
     public UsuarioModel salvarUsuario(UsuarioModel usuario) {
