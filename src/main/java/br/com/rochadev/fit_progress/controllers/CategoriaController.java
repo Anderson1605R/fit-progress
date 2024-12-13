@@ -3,6 +3,7 @@ package br.com.rochadev.fit_progress.controllers;
 import br.com.rochadev.fit_progress.model.CategoriaModel;
 import br.com.rochadev.fit_progress.repositories.CategoriaRepo;
 import br.com.rochadev.fit_progress.services.CategoriaService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class CategoriaController {
     }
 
     @PostMapping("/salvar/{id}")
-    public ResponseEntity<CategoriaModel> salvar(@RequestBody CategoriaModel categoriaModel, @PathVariable("id") long id) {
+    public ResponseEntity<CategoriaModel> salvar(@Valid @RequestBody CategoriaModel categoriaModel, @PathVariable("id") long id) {
         categoriaService.salvarCategoria(categoriaModel, id);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

@@ -2,6 +2,7 @@ package br.com.rochadev.fit_progress.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "FP_exercicios")
@@ -10,10 +11,13 @@ public class ExercicioModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "nome", nullable = false)
+
     private String nome;
     @Column(name = "series", nullable = false)
+
     private int numeroSeries;
     @Column(name = "carga", nullable = false)
+
     private int quantidadeCarga;
     @JsonBackReference
     @ManyToOne

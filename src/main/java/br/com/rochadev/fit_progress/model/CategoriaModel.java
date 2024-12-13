@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ public class CategoriaModel {
     @Column(name = "categorias_id")
     private long id;
     @Column(name = "nome", nullable = false)
+    @NotBlank
     private String nome;
     @JsonBackReference
     @ManyToOne

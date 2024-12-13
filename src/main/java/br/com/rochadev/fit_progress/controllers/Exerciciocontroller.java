@@ -2,6 +2,7 @@ package br.com.rochadev.fit_progress.controllers;
 
 import br.com.rochadev.fit_progress.model.ExercicioModel;
 import br.com.rochadev.fit_progress.services.ExercicioService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class Exerciciocontroller {
     }
 
     @PostMapping("/salvar/{id}")
-    public ResponseEntity<ExercicioModel> salvar(@RequestBody ExercicioModel exercicioModel, @PathVariable("id") long id) {
+    public ResponseEntity<ExercicioModel> salvar( @RequestBody ExercicioModel exercicioModel, @PathVariable("id") long id) {
         exercicioService.salvarExercicio(exercicioModel, id);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

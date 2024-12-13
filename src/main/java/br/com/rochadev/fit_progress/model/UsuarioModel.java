@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +18,15 @@ public class UsuarioModel {
     @Column(name = "usuarios_id")
     private long id;
     @Column(name = "nome", nullable = false)
+    @NotBlank
     private String nome;
 
     @Column(name = "email", nullable = false, unique = true)
+    @NotBlank
+    @Email
     private String email;
     @Column(name = "senha", nullable = false)
+    @NotBlank
     private String senha;
     @JsonManagedReference
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
