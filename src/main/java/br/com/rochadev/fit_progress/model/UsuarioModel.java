@@ -1,18 +1,18 @@
 package br.com.rochadev.fit_progress.model;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
+
 import java.util.ArrayList;
+
 import java.util.List;
 
 @Entity
 @Table(name = "FP_usuarios")
-public class UsuarioModel {
+public class UsuarioModel{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usuarios_id")
@@ -28,9 +28,11 @@ public class UsuarioModel {
     @Column(name = "senha", nullable = false)
     @NotBlank
     private String senha;
+    private UserRole role;
     @JsonManagedReference
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("usuario")
+
     private List<CategoriaModel> categorias = new ArrayList<>();
 
     public List<CategoriaModel> getCategorias() {
@@ -74,12 +76,20 @@ public class UsuarioModel {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
 
 
     public void adicionarCategoria(CategoriaModel categoria) {
         categorias.add(categoria);
         categoria.setUsuario(this);
     }
+
 
 
 }
